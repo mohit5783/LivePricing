@@ -1,70 +1,115 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Live Pricing Application
 
-## Available Scripts
+This is a live pricing application that displays real-time pricing data for various forex symbols. It utilizes the Deriv API to fetch tick data and historical prices. The application is built using React and Ant Design.
 
-In the project directory, you can run:
+## Functionality
 
-### `npm start`
+The current version of the application provides the following functionality:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+-   Fetches a list of active forex symbols from the Deriv API.
+-   Retrieves and displays the latest tick prices for each symbol.
+-   Displays the 24-hour change in price for each symbol.
+-   Supports sorting of columns in the table.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Prerequisites
 
-### `npm test`
+To build and execute the live pricing application on any Linux-based device, ensure that you have the following dependencies installed:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Node.js: The application requires Node.js to be installed. You can download and install Node.js by following the instructions for your Linux distribution. It is recommended to use the LTS version.
 
-### `npm run build`
+## Getting Started
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+To run the live pricing application on your Linux-based device, follow these steps:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. Download the zip file containing the application.
+2. Extract the contents of the zip file to a directory of your choice.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Installation
 
-### `npm run eject`
+Open a terminal and navigate to the extracted directory.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```bash
+cd live-pricing-app
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
+Run the following command to install the dependencies:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```bash
+npm install
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Configuration
 
-## Learn More
+Before running the application, you need to configure the WebSocket connection. Open the `App.js` file located in the `src` directory.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```javascript
+const app_id = 1089;
+const connection = new WebSocket(
+  `wss://ws.binaryws.com/websockets/v3?l=EN&app_id=${app_id}`
+);
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Replace the `app_id` value with your own app ID. You can obtain an app ID by signing up on the Deriv Developer Portal.
 
-### Code Splitting
+## Building the Application
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+To build the live pricing application, use the following command:
 
-### Analyzing the Bundle Size
+```bash
+`npm run build` 
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+This command will create a production-ready build of the application in the `build` directory.
 
-### Making a Progressive Web App
+## Running the Application
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Copy the contents of the `build` directory to your Linux-based device where you want to run the application.
 
-### Advanced Configuration
+To serve the built application using a static file server, you can use tools like `serve` or `nginx`. Here's an example using `serve`:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+1.  Install `serve` globally by running the following command:
+```bash
+npm install -g serve
+```
+2. Navigate to the `build` directory:
+```bash
+cd path/to/build
+```
+3. Start the static file server:
+```bash
+serve -p 3000
+```
 
-### Deployment
+The application will be available at `http://localhost:3000`.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-### `npm run build` fails to minify
+## Further Development
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+If you had more time to improve the application, here are some possible enhancements:
+
+
+- **Error handling**: Enhance error handling to gracefully handle API failures and display appropriate error messages to the user.
+
+- **Authentication**: Add user authentication and authorization to secure the application and provide personalized experiences.
+
+- **Symbol search**: Implement a search functionality to allow users to search for specific symbols, making it easier to find and track specific forex pairs.
+
+- **Data caching**: Implement a caching mechanism to store previously fetched symbol data, reducing the number of API calls and improving performance.
+
+- **Responsive design**: Optimize the application layout and styling to ensure a seamless experience across different screen sizes and devices.
+
+- **Error logging**: Set up a logging system to capture and track application errors, making it easier to diagnose and troubleshoot issues.
+
+## Troubleshooting
+
+If you encounter any issues or errors while building or running the application, try the following steps:
+
+-   Ensure that you have a stable internet connection.
+-   Verify that the WebSocket connection URL is correct in the `App.js` file.
+-   Double-check that all the dependencies are properly installed by running `npm install` again.
+-   If the issue persists, refer to the project's issue tracker or seek help from the community.
+
+### Note
+
+> Please note that the instructions assume basic familiarity with using a terminal and running commands on a Linux-based system. Additionally, make sure that the zip file contains all the necessary files for the application to build and run successfully on any Linux-based device.
